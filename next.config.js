@@ -1,9 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-  images: {
-    domains: ['res.cloudinary.com'], // Add the hostname here
-  },
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https', // Cloudinary uses HTTPS
+          hostname: 'res.cloudinary.com',
+          pathname: '/dwkvlhuyv/image/upload/**', // Be specific to your cloud name and upload path
+        },
+      ],
+    },
 }
 
 module.exports = nextConfig
