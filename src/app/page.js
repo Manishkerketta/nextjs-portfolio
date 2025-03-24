@@ -8,16 +8,22 @@ import AchievementsSection from "./components/AchievementsSection";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#121212]">
+    <main 
+    className="flex min-h-screen flex-col bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#6366f1] via-[#4f46e5] to-[#4338ca]"
+    >
       <Navbar />
-      <div className="container mt-24 mx-auto px-12 py-4">
+      <div >
         <HeroSection />
-        <AchievementsSection />
-        <AboutSection />
+         </div>
+         {/* <div className=" mt-24 mx-auto px-12 py-4"> */}
+         <AboutSection />
+         {/* </div> */}
+        {/* <AchievementsSection /> */}
+        
         <ProjectsSection />
         <EmailSection />
-      </div>
-      <Footer />
+      {/* </div> */}
+      {/* <Footer /> */}
     </main>
   );
 }

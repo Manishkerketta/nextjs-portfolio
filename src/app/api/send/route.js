@@ -26,3 +26,25 @@ export async function POST(req, res) {
     return NextResponse.json({ error });
   }
 }*/
+// import { NextResponse } from "next/server";
+
+// let currentQuote = 'First, solve the problem. Then, write the code. - John Johnson';
+
+// export async function GET(request) {
+//   return NextResponse.json({ quote: currentQuote }, { status: 200 });
+// }
+// export async function POST(request) {
+//   try {
+//     const { data } = await request.json();
+
+//     if (typeof data === 'string') {
+//       currentQuote = data;
+//       return NextResponse.json({ message: 'Quote updated successfully!', newQuote: currentQuote }, { status: 200 });
+//     } else {
+//       return NextResponse.json({ error: 'Invalid data format. Please provide a string in the "data" field.' }, { status: 400 });
+//     }
+//   } catch (error) {
+//     console.error('Error processing POST request:', error);
+//     return NextResponse.json({ error: 'Failed to update quote.' }, { status: 500 });
+//   }
+// }
