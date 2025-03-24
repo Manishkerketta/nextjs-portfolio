@@ -26,8 +26,8 @@ const EmailSection = () => {
         <div>
           <h5 className="text-2xl font-bold">Let's Connect</h5>
           <p className="text-[#ADB7BE] mt-2">
-            I'm currently looking for new opportunities. My inbox is always open. 
-            Whether you have a question or just want to say hi, I'll try my best to respond!
+          I&apos;m currently looking for new opportunities. My inbox is always open.
+          Whether you have a question or just want to say hi, I&apos;ll try my best to respond!
           </p>
         </div>
 
@@ -45,7 +45,7 @@ const EmailSection = () => {
           {/* LinkedIn */}
           <button 
             onClick={() => handleConfirm("https://www.linkedin.com/in/manish-kerketta-b91902222/")} 
-            className="flex items-center gap-2 hover:text-gray-400 transition"
+            className="flex items-center gap-2 hover:scale-110 transition"
           >
             <Image src={LinkedinIcon} alt="LinkedIn" width={30} height={30} />
             <span className="text-lg">Connect with me on LinkedIn</span>
