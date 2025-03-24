@@ -24,7 +24,7 @@ const EmailSection = () => {
         
         {/* Left Section: Contact Info */}
         <div>
-          <h5 className="text-2xl font-bold">Let's Connect</h5>
+          <h5 className="text-2xl font-bold">Let&apos;s Connect</h5>
           <p className="text-[#ADB7BE] mt-2">
           I&apos;m currently looking for new opportunities. My inbox is always open.
           Whether you have a question or just want to say hi, I&apos;ll try my best to respond!
