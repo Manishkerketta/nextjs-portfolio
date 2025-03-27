@@ -45,7 +45,7 @@ const EmailSection = () => {
           {/* LinkedIn */}
           <button 
             onClick={() => handleConfirm("https://www.linkedin.com/in/manish-kerketta-b91902222/")} 
-            className="flex items-center gap-2 hover:scale-110 transition"
+            className="flex items-center gap-2 hover:text-gray-400 transition"
           >
             <Image src={LinkedinIcon} alt="LinkedIn" width={30} height={30} />
             <span className="text-lg">Connect with me on LinkedIn</span>

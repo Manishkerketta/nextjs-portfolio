@@ -13,12 +13,23 @@ const navLinks = [
 
 const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  // Handle Navbar background on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolling(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close mobile menu when resizing to a larger screen
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        setNavbarOpen(false); // Close mobile menu when reaching md breakpoint
+        setNavbarOpen(false);
       }
     };
 
@@ -27,48 +38,59 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="p-4 bg-background/60 sticky top-0 backdrop-blur border-b border-coolGray-300 z-10 w-full">
-      <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
-       
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolling ? "bg-black/80 shadow-lg" : "bg-transparent"
+      } backdrop-blur-md`}
+    >
+      <div className="container mx-auto px-6 lg:px-12 py-3 flex items-center justify-between">
+        {/* Logo */}
         <Link href={"/"} className="flex items-center">
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white ">
-            <img src="/images/myimage3.png" alt="Logo" className="w-full h-full object-cover" />
+          <div className="w-12 h-12 overflow-hidden border-2 border-white rounded-md shadow-lg">
+            <img src="/portfolio.png" alt="Logo" className="w-full h-full object-cover" />
           </div>
         </Link>
 
         {/* Mobile Menu Button */}
-        <div className="mobile-menu block md:hidden">
-          {!navbarOpen ? (
-            <button
-              onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <Bars3Icon className="h-5 w-5" />
-            </button>
-          ) : (
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <XMarkIcon className="h-5 w-5" />
-            </button>
-          )}
+        <div className="md:hidden">
+          <button
+            onClick={() => setNavbarOpen(!navbarOpen)}
+            className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition duration-300"
+          >
+            {navbarOpen ? (
+              <XMarkIcon className="h-6 w-6 text-white" />
+            ) : (
+              <Bars3Icon className="h-6 w-6 text-white" />
+            )}
+          </button>
         </div>
 
         {/* Desktop Menu */}
-        <div className="menu hidden md:block md:w-auto">
-          <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0 font-normal text-black hover:scale-105 hover:font-semibold transition-transform duration-300">
-            {navLinks.map((link, index) => (
-              <li key={index}>
-                <NavLink href={link.path} title={link.title} />
-              </li>
-            ))}
-          </ul>
+        <div className="hidden md:flex space-x-8">
+          {navLinks.map((link, index) => (
+            <NavLink
+              key={index}
+              href={link.path}
+              title={link.title}
+              className="text-white font-medium hover:text-gray-300 transition duration-300"
+            />
+          ))}
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
-      {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
+      {navbarOpen && (
+        <div className="absolute top-full left-0 w-full bg-black/90 py-4 flex flex-col items-center space-y-4 md:hidden transition-all duration-300">
+          {navLinks.map((link, index) => (
+            <NavLink
+              key={index}
+              href={link.path}
+              title={link.title}
+              className="text-white text-lg font-semibold hover:text-gray-300 transition duration-300"
+            />
+          ))}
+        </div>
+      )}
     </nav>
   );
 };

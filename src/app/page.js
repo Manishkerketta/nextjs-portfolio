@@ -9,7 +9,7 @@ import AchievementsSection from "./components/AchievementsSection";
 export default function Home() {
   return (
     <main 
-    className="flex min-h-screen flex-col bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-[#6366f1] via-[#4f46e5] to-[#4338ca]"
+    className="flex min-h-screen flex-col bg-gradient-to-r from-gray-700 via-gray-900 to-black"
     >
       <Navbar />
       <div >

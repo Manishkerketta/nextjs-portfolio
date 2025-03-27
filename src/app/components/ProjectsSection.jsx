@@ -60,6 +60,34 @@ const projectsData = [
     gitUrl: "/",
     previewUrl: "/",
   },
+  {
+    id: 7,
+    title: "Google Cloud Platform ",
+    description: "Experienced in leveraging Google Cloud Platform (GCP) to build, deploy, and manage scalable and reliable cloud-based applications and infrastructure. My understanding encompasses various GCP services, including Compute Engine for virtual machines, Cloud Storage for object storage, App Engine for serverless application deployment, Kubernetes Engine (GKE) for container orchestration, Cloud Functions for event-driven serverless code, and Cloud SQL/Cloud Spanner for managed database services. I am familiar with core GCP concepts such as Projects, Zones, Regions, and IAM for access control and security. I have utilized GCP for tasks ranging from deploying web applications and APIs to managing data storage and implementing CI/CD pipelines. My experience includes understanding cost management, monitoring using Cloud Monitoring, and ensuring the scalability and high availability of applications deployed on GCP.",
+    image: "/gcp.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+
+  {
+    id: 8,
+    title: "Git and CI/CD",
+    description: "Proficient in using Git for version control, including branching strategies, merging, and resolving conflicts to facilitate collaborative software development. Experienced with platforms like GitHub, GitLab, and Bitbucket for repository management and team workflows. My understanding extends to implementing Continuous Integration/Continuous Deployment (CI/CD) pipelines using tools such as Jenkins, GitLab CI, GitHub Actions, or similar. I have designed and configured automated build, test, and deployment processes to ensure rapid and reliable software delivery, improving code quality and reducing manual effort.",
+    image: "/git.webp",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 9,
+    title: "JIRA",
+    description: "Experienced in utilizing JIRA, a powerful issue tracking and project management tool, to streamline software development workflows. My proficiency includes creating and managing projects, configuring workflows, creating and assigning issues (including bugs, tasks, and stories), and effectively using JIRA's search and filtering capabilities to track progress. I am familiar with Agile methodologies within JIRA, such as setting up and managing Scrum and Kanban boards, planning sprints, and generating reports (e.g., burndown charts, velocity charts) to monitor team performance and project status. I have also used JIRA for collaboration, communication, and maintaining a clear overview of project requirements and deliverables.",
+    image: "/jira.webp",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  }
 ];
 
 const ProjectsSection = () => {
