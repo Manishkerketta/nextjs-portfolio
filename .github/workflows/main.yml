@@ -1,71 +1,32 @@
-name: Deploy Next.js Portfolio to Hostinger VPS
+name: Deploy
 
+# Controls when the action will run. 
 on:
+  # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches:
-      - main
+    branches: [ main ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  deploy:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:       
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: 22
+        script: |
+          cd /root/nextjs-portfolio
+          git pull origin main
+          git status
+          npm install --only=prod
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18' # Or your preferred Node.js version
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Next.js application
-        run: npm run build
-
-      - name: SSH Deploy to Hostinger
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          port: ${{ secrets.PORT }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            echo "Starting deployment to Hostinger VPS..."
-            TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            REMOTE_APP_PATH="/home/${{ secrets.USERNAME}}/nextjs-portfolio"
-            REMOTE_BUILD_PATH="${REMOTE_APP_PATH}/.next/standalone" # Path to the built standalone server
-            DEPLOYMENT_ARCHIVE="build_${TIMESTAMP}.tar.gz"
-
-            echo "Creating deployment archive: ${DEPLOYMENT_ARCHIVE}"
-            cd .next/standalone # Go into the standalone build output
-            tar -czvf "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" .
-
-            echo "Moving to remote application directory: ${REMOTE_APP_PATH}"
-
-            echo "Uploading deployment archive..."
-            scp -P ${{ secrets.PORT }} "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" "${{ secrets.USERNAME }}@${{ secrets.HOST }}:${REMOTE_APP_PATH}/"
-
-            echo "Extracting new build on the VPS..."
-            ssh ${{ secrets.USERNAME}}@${{ secrets.HOST }} -p ${{ secrets.PORT }} << EOF
-              cd ${REMOTE_APP_PATH}
-              tar -xzvf ${DEPLOYMENT_ARCHIVE}
-              rm ${DEPLOYMENT_ARCHIVE}
-
-              echo "Stopping previous application (if running)"
-              # Example using pm2:
-              pm2 stop nextjs-portfolio || true
-
-              echo "Starting the new application"
-              # Example using pm2:
-              pm2 start npm --name "nextjs-portfolio" --prefix . -- start -p 3000 # Adjust port if needed
-
-              echo "Saving current process list (for pm2)"
-              pm2 save
-
-              echo "Deployment complete!"
-            EOF
-
-            echo "Cleaning up local build..."
-            rm -rf .next/standalone
+          name: Deploy Next.js Portfolio to Hostinger VPS
