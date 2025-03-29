@@ -1,0 +1,71 @@
+name: Deploy Next.js Portfolio to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Or your preferred Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js application
+        run: npm run build
+
+      - name: SSH Deploy to Hostinger
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Starting deployment to Hostinger VPS..."
+            TIMESTAMP=$(date +%Y%m%d%H%M%S)
+            REMOTE_APP_PATH="/home/${{ secrets.VPS_USER }}/nextjs-portfolio"
+            REMOTE_BUILD_PATH="${REMOTE_APP_PATH}/.next/standalone" # Path to the built standalone server
+            DEPLOYMENT_ARCHIVE="build_${TIMESTAMP}.tar.gz"
+
+            echo "Creating deployment archive: ${DEPLOYMENT_ARCHIVE}"
+            cd .next/standalone # Go into the standalone build output
+            tar -czvf "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" .
+
+            echo "Moving to remote application directory: ${REMOTE_APP_PATH}"
+
+            echo "Uploading deployment archive..."
+            scp -P ${{ secrets.VPS_PORT }} "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_APP_PATH}/"
+
+            echo "Extracting new build on the VPS..."
+            ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} -p ${{ secrets.VPS_PORT }} << EOF
+              cd ${REMOTE_APP_PATH}
+              tar -xzvf ${DEPLOYMENT_ARCHIVE}
+              rm ${DEPLOYMENT_ARCHIVE}
+
+              echo "Stopping previous application (if running)"
+              # Example using pm2:
+              pm2 stop nextjs-portfolio || true
+
+              echo "Starting the new application"
+              # Example using pm2:
+              pm2 start npm --name "nextjs-portfolio" --prefix . -- start -p 3000 # Adjust port if needed
+
+              echo "Saving current process list (for pm2)"
+              pm2 save
+
+              echo "Deployment complete!"
+            EOF
+
+            echo "Cleaning up local build..."
+            rm -rf .next/standalone
