@@ -5,6 +5,15 @@ import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 const HeroSection = () => {
+
+  const handleDownloadClick = (event) => {
+    event.preventDefault(); // Prevent default navigation
+
+    const userConfirmed = window.confirm("Do you want to download the CV?");
+    if (userConfirmed) {
+      window.location.href = "https://drive.google.com/your-cv-link"; // Replace with your actual CV link
+    }
+  };
   return (
     <section
       className="relative w-full h-screen flex items-center justify-center bg-cover bg-center px-6 sm:px-12 lg:px-24"
@@ -47,6 +56,7 @@ const HeroSection = () => {
             </Link>
             <Link
               href="/"
+              onClick={handleDownloadClick}
               className="px-6 py-3 rounded-full bg-[#121212] text-white font-bold transition-transform duration-200 hover:scale-105"
             >
               Download CV

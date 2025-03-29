@@ -9,8 +9,39 @@ const projectsData = [
     id: 1,
     title: "AEPS Microservices Backend",
     description:
-      "At iServeU, a product-based company, I developed a robust and scalable microservices backend architecture using Spring Boot from inception to deployment. This system was designed to handle heavy traffic for various AEPS (Aadhaar Enabled Payment System) transactions, including balance enquiry, cash withdrawal, cash deposit, and mini-statements. My contributions spanned the entire development lifecycle, ensuring a high-performing and resilient solution.",
+      "At iServeU, a product-based company, I developed a robust and scalable microservices backend architecture using Spring Boot from inception to deployment. This system was designed to handle heavy traffic for various AEPS (Aadhaar Enabled Payment System) transactions ,mainly used by customers in rural areas who don’t have debit cards or smartphones., it includes balance enquiry, cash withdrawal, cash deposit, and mini-statements. My contributions spanned the entire development lifecycle, ensuring a high-performing and resilient solution.",
     image: "/aepsimg.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 10,
+    title: "Aadhaar Pay Microservices Backend",
+    description:
+      "At iServeU,I also developed a robust and scalable microservices backend architecture using Spring Boot for **Aadhaar Pay**. This system was designed to handle heavy traffic for enabling merchants to accept payments directly from customers using their Aadhaar. **Aadhaar Pay** works via a merchant’s mobile app linked to a bank account, with authentication secured through Aadhaar number and fingerprint. The supported transaction within **Aadhaar Pay** is primarily payment to merchants, excluding cash withdrawal or deposit functionalities. My contributions spanned the entire development lifecycle, ensuring a high-performing and resilient solution for **Aadhaar Pay**.",
+    image: "/pay.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 11,
+    title: "My Portfolio Website",
+    description:
+      "Developed and deployed my personal portfolio website, https://manishkerketta.in, using Next.js for the frontend. The website showcases my skills, projects, and experience. I utilized Docker for containerization during development and deployment. It is currently hosted on Hostinger.",
+    image: "/cv.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  
+  {
+    id: 11,
+    title: "Gym Book",
+    description:
+      "Developed a web application, 'Gym Book,' designed for gym owners to efficiently manage their gym and clients. The platform allows gym owners to securely log in and track real-time member presence. Key features include the ability to record and view personalized daily calorie recommendations for clients, manage and view individual workout splits, and monitor subscription statuses to identify expiring memberships. This tracking website streamlines gym operations and enhances client management.",
+    image: "/gymbook.png",
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
