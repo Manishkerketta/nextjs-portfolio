@@ -27,14 +27,14 @@ jobs:
       - name: SSH Deploy to Hostinger
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.VPS_HOST }}
-          port: ${{ secrets.VPS_PORT }}
-          username: ${{ secrets.VPS_USER }}
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Starting deployment to Hostinger VPS..."
             TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            REMOTE_APP_PATH="/home/${{ secrets.VPS_USER }}/nextjs-portfolio"
+            REMOTE_APP_PATH="/home/${{ secrets.USERNAME}}/nextjs-portfolio"
             REMOTE_BUILD_PATH="${REMOTE_APP_PATH}/.next/standalone" # Path to the built standalone server
             DEPLOYMENT_ARCHIVE="build_${TIMESTAMP}.tar.gz"
 
@@ -45,10 +45,10 @@ jobs:
             echo "Moving to remote application directory: ${REMOTE_APP_PATH}"
 
             echo "Uploading deployment archive..."
-            scp -P ${{ secrets.VPS_PORT }} "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:${REMOTE_APP_PATH}/"
+            scp -P ${{ secrets.PORT }} "${REMOTE_APP_PATH}/${DEPLOYMENT_ARCHIVE}" "${{ secrets.USERNAME }}@${{ secrets.HOST }}:${REMOTE_APP_PATH}/"
 
             echo "Extracting new build on the VPS..."
-            ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} -p ${{ secrets.VPS_PORT }} << EOF
+            ssh ${{ secrets.USERNAME}}@${{ secrets.HOST }} -p ${{ secrets.PORT }} << EOF
               cd ${REMOTE_APP_PATH}
               tar -xzvf ${DEPLOYMENT_ARCHIVE}
               rm ${DEPLOYMENT_ARCHIVE}
