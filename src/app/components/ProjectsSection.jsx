@@ -20,7 +20,7 @@ const projectsData = [
     title: "Aadhaar Pay Microservices Backend",
     description:
       "At iServeU,I also developed a robust and scalable microservices backend architecture using Spring Boot for **Aadhaar Pay**. This system was designed to handle heavy traffic for enabling merchants to accept payments directly from customers using their Aadhaar. **Aadhaar Pay** works via a merchant’s mobile app linked to a bank account, with authentication secured through Aadhaar number and fingerprint. The supported transaction within **Aadhaar Pay** is primarily payment to merchants, excluding cash withdrawal or deposit functionalities. My contributions spanned the entire development lifecycle, ensuring a high-performing and resilient solution for **Aadhaar Pay**.",
-    image: "/pay.png",
+    image: "/ap1.png",
     tag: ["All", "Web"],
     gitUrl: "/",
     previewUrl: "/",
