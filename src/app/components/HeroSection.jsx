@@ -11,7 +11,7 @@ const HeroSection = () => {
 
     const userConfirmed = window.confirm("Do you want to download the CV?");
     if (userConfirmed) {
-      window.location.href = "https://drive.google.com/your-cv-link"; // Replace with your actual CV link
+      window.location.href = "https://drive.google.com/file/d/1XVz2oULRMFaaD7LmqVgwIAUOdALfzJvq/view?usp=drive_link"; // Replace with your actual CV link
     }
   };
   return (

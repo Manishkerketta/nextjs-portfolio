@@ -9,7 +9,7 @@ const projectsData = [
     id: 1,
     title: "AEPS Microservices Backend",
     description:
-      "At iServeU, a product-based company, I developed a robust and scalable microservices backend architecture using Spring Boot from inception to deployment. This system was designed to handle heavy traffic for various AEPS (Aadhaar Enabled Payment System) transactions ,mainly used by customers in rural areas who don’t have debit cards or smartphones., it includes balance enquiry, cash withdrawal, cash deposit, and mini-statements. My contributions spanned the entire development lifecycle, ensuring a high-performing and resilient solution.",
+      "At iServeU, a product-based company, I developed a robust and scalable microservices backend architecture using Spring Boot from inception to deployment. This system was designed to handle heavy traffic for various AEPS (Aadhaar Enabled Payment System) transactions ,mainly used by customers in rural areas who don’t have debit cards or smartphones., it includes balance enquiry, cash withdrawal, cash deposit, and mini-statements. I also added two-factor authentication (2FA) for extra security. The system can easily handle 2 million requests and even more because it's set up with Kubernetes, which automatically adjusts the system's capacity based on how many people are using it at any time. This makes sure it's always fast and reliable, even during peak hours.",
     image: "/aepsimg.png",
     tag: ["All", "Web"],
     gitUrl: "/",
@@ -29,7 +29,7 @@ const projectsData = [
     id: 11,
     title: "My Portfolio Website",
     description:
-      "Developed and deployed my personal portfolio website, https://manishkerketta.in, using Next.js for the frontend. The website showcases my skills, projects, and experience. I utilized Docker for containerization during development and deployment. It is currently hosted on Hostinger.",
+      "I have developed and deployed my personal portfolio website, https://manishkerketta.in, using Next.js for the frontend. The website showcases my skills, projects, and experience. For a streamlined development and deployment process, I utilized Docker for containerization. Furthermore, I implemented a robust CI/CD pipeline using GitHub Actions to automate builds and deployments. I also purchased a custom domain and connected it with my Virtual Private Server (VPS), where Nginx is configured to serve the website.",
     image: "/cv.png",
     tag: ["All", "Web"],
     gitUrl: "/",
