@@ -18,7 +18,8 @@ const TAB_DATA = [
         <li>gRPC</li>
         <li>Pub/Sub</li>
         <li>GCP</li>
-        <li>JavaScript (Basics)</li>
+        <li>JavaScript</li>
+        <li>Reactjs</li>
         <li>Next.js Framework</li>
       </ul>
     ),
@@ -64,13 +65,12 @@ const AboutSection = () => {
         <div className="md:w-1/2 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
-            Backend-focused Spring Boot Developer (3+ years) proficient in
-            building high-performance Java applications, RESTful APIs, and gRPC
-            services. Expertise in PostgreSQL, MySQL, Redis, and Cassandra.
-            Experienced with GCP (Kubernetes, Cloud Run, Pub/Sub). Actively
-            learning React Native and Next.js for full-stack capabilities. Eager
-            to contribute to innovative and scalable projects. Open to
-            opportunities leveraging backend and emerging frontend skills.
+          Backend-focused Spring Boot Developer (3+ years) with 1+ year of full-stack hands-on experience, 
+          proficient in building high-performance Java applications, RESTful APIs, and gRPC services.
+           Skilled in PostgreSQL, MySQL, Redis, and Cassandra. Experienced with GCP (Kubernetes, Cloud Run, Pub/Sub).
+            Hands-on experience with React.js and Next.js, expanding into full-stack development. 
+            Eager to contribute to innovative and scalable projects.
+           Open to opportunities leveraging both backend expertise and emerging frontend capabilities.
           </p>
           {/* Tabs */}
           <div className="flex flex-row justify-start mt-6">
